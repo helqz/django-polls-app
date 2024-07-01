@@ -1,4 +1,14 @@
-{% extends "base.html" %}
-{% block title %}Question {{question.id}}{% endblock %}
+{% extends "base.html" %} 
+{% block title %}{{question.question_text}}{% endblock%} 
 {% block content %}
+<ul>
+    <h1>{{question.question_text}}</h1>
+    {% for choice in question.choice_set.all %}
+    <li>
+        <a class="d-block py-2 px-3" href="">
+            {{ choice.choice_text }} {{ choice.votes }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}

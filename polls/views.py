@@ -11,8 +11,9 @@ def home(request):
 
 
 def detail(request, question_id):
-    q = Question.objects.get(id=question_id)
-    return HttpResponse(f"You're looking at question: {q.question_text}")
+    question = Question.objects.get(id=question_id)
+    context = {'question': question}
+    return render(request, 'detail.html', context)
 
 
 def results(request, question_id):

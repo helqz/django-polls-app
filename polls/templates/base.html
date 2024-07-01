@@ -1,56 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    {% block title %}
-      Django App
-    {% endblock %}
-  </title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #343a40;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-    }
-    h1 {
-      color: white;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      background-color: white;
-      border: 1px solid #ddd;
-      margin: 0.5rem 0;
-      padding: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .pub-date {
-      font-size: smaller;
-      color: gray;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Polls App</h1>
-  </header>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} Django App {% endblock %}</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+            }
+            header {
+                background-color: #343a40;
+                color: white;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 4px solid #007bff;
+            }
+            @keyframes neonText {
+                0% {
+                    text-shadow: 0 0 3px rgba(0, 255, 255, 0.7),
+                        0 0 20px rgba(0, 255, 255, 0.7);
+                }
+                50% {
+                    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7),
+                        0 0 30px rgba(0, 255, 255, 0.7);
+                }
+                100% {
+                    text-shadow: 0 0 3px rgba(0, 255, 255, 0.7),
+                        0 0 20px rgba(0, 255, 255, 0.7);
+                }
+            }
+            h1 {
+                font-family: 'Monospace', cursive;
+                font-size: 3.5rem;
+                animation: neonText 1.5s infinite alternate;
+            }
+            main {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                animation: slideInUp 0.5s ease;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                background-color: #ffffff;
+                border: 1px solid rgba(0, 0, 0, 0.125);
+                border-radius: 0.25rem;
+                margin-bottom: 0.75rem;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                font-family: 'Monospace', cursive;
+            }
+            li:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            }
+            li a {
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                padding: 1rem;
+            }
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .pub-date {
+                font-size: 0.875rem;
+                color: #6c757d;
+                float: right;
+            }
+            .votes {
+                font-size: 0.875rem;
+                color: #6c757d;
+                float: right;
+            }
+            a:link {
+                text-decoration: none;
+                color: white;
+            }
+            h1 a:visited {
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="bg-dark text-white">
+            <div class="container text-center">
+                <h1 class="mb-4">
+                    <a href="{% url 'polls:home' %}">Polls App</a>
+                </h1>
+            </div>
+        </header>
+        <main class="container">{% block content %}{% endblock %}</main>
+    </body>
 </html>
